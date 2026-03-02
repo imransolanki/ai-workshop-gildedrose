@@ -1,0 +1,29 @@
+{
+  "name": "review-refactor-mode",
+  "description": "Interactive, incremental code review workflow for given codebases. Performs focused analysis of only on user given commit id(s) and modified code and test files, surfaces the most critical issues first, and interacts with the user step‑by‑step to determine whether to refactor, skip, elaborate, or backlog each issue.",
+  "prompt": "file://../../.github/agents/review-mode.agent.md",
+  "mcpServers": {},
+  "tools": [
+    "*"
+  ],
+  "toolAliases": {},
+  "allowedTools": ["read", "write", "shell"], 
+  "resources": [
+    "file://./.github/context/**/*.md",
+    "file://./.github/guidelines/**/*.md",
+    "file://./.github/copilot-instructions.md"
+  ],
+  "toolsSettings": {
+    "shell": {
+      "allowedCommands": ["git status", "git fetch"],
+      "deniedCommands": ["git commit .*", "git push .*"],
+      "autoAllowReadonly": true
+    },
+    "@git/git_status": {
+      "git_user": "$GIT_USER"
+    }
+  },
+  "hooks": {},
+  "useLegacyMcpJson": true,
+  "model": "claude-sonnet-4.5" 
+}

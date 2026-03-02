@@ -1,0 +1,31 @@
+{
+  "name": "default-mode",
+  "description": "Agent loaded with context and guidelines, but no specific prompt. Useful for general tasks and when you want the agent to determine how to use the context and tools on its own.",
+  "prompt": null,
+  "mcpServers": {},
+  "tools": [
+    "read",
+    "shell",
+    "write"
+  ],
+  "toolAliases": {},
+  "allowedTools": ["read", "write", "shell"], 
+  "resources": [
+    "file://./.github/context/**/*.md",
+    "file://./.github/guidelines/**/*.md",
+    "file://./.github/copilot-instructions.md"
+  ],
+  "toolsSettings": {
+    "shell": {
+      "allowedCommands": ["git status", "git fetch"],
+      "deniedCommands": ["git commit .*", "git push .*"],
+      "autoAllowReadonly": true
+    },
+    "@git/git_status": {
+      "git_user": "$GIT_USER"
+    }
+  },
+  "hooks": {},
+  "useLegacyMcpJson": true,
+  "model": "claude-sonnet-4.5"
+}
