@@ -6,9 +6,12 @@ public class GildedRose {
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     private static final String CONJURED = "Conjured";
     
-    private Item[] items;
+    private final Item[] items;
 
     public GildedRose(Item[] items) {
+        if (items == null) {
+            throw new IllegalArgumentException("items cannot be null");
+        }
         this.items = items;
     }
 

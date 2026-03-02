@@ -182,4 +182,9 @@ public class GildedRoseTest {
         assertEquals(4, items[0].getSellIn());
         assertEquals(0, items[0].getQuality());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructor_ThrowsExceptionWhenItemsNull() {
+        new GildedRose(null);
+    }
 }
