@@ -37,23 +37,23 @@ public class GildedRose {
 
     private void updateBackstagePassQuality(Item item) {
         increaseQuality(item);
-        if (item.sellIn < 11) increaseQuality(item);
-        if (item.sellIn < 6) increaseQuality(item);
+        if (item.getSellIn() < 11) increaseQuality(item);
+        if (item.getSellIn() < 6) increaseQuality(item);
     }
 
     private void updateSellIn(Item item) {
         if (!isSulfuras(item)) {
-            item.sellIn--;
+            item.setSellIn(item.getSellIn() - 1);
         }
     }
 
     private void applyExpiredQualityChange(Item item) {
-        if (item.sellIn >= 0) return;
+        if (item.getSellIn() >= 0) return;
         
         if (isAgedBrie(item)) {
             increaseQuality(item);
         } else if (isBackstagePass(item)) {
-            item.quality = 0;
+            item.setQuality(0);
         } else if (!isSulfuras(item)) {
             decreaseQuality(item);
             if (isConjured(item)) {
@@ -63,14 +63,14 @@ public class GildedRose {
     }
 
     private void increaseQuality(Item item) {
-        if (item.quality < 50) {
-            item.quality++;
+        if (item.getQuality() < 50) {
+            item.setQuality(item.getQuality() + 1);
         }
     }
 
     private void decreaseQuality(Item item) {
-        if (item.quality > 0) {
-            item.quality--;
+        if (item.getQuality() > 0) {
+            item.setQuality(item.getQuality() - 1);
         }
     }
 
