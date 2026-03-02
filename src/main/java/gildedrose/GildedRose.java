@@ -4,6 +4,7 @@ public class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String CONJURED = "Conjured";
     
     private Item[] items;
 
@@ -28,6 +29,9 @@ public class GildedRose {
             updateBackstagePassQuality(item);
         } else {
             decreaseQuality(item);
+            if (isConjured(item)) {
+                decreaseQuality(item);
+            }
         }
     }
 
@@ -52,6 +56,9 @@ public class GildedRose {
             item.quality = 0;
         } else if (!isSulfuras(item)) {
             decreaseQuality(item);
+            if (isConjured(item)) {
+                decreaseQuality(item);
+            }
         }
     }
 
@@ -77,5 +84,9 @@ public class GildedRose {
 
     private boolean isSulfuras(Item item) {
         return item.name.equals(SULFURAS);
+    }
+
+    private boolean isConjured(Item item) {
+        return item.name.startsWith(CONJURED);
     }
 }
